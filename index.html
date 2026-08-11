@@ -79,7 +79,7 @@
           <img src="static/images/project/position/despike_before_after_ep109.png" alt="Position trajectory before and after depth-spike cleanup" loading="lazy">
           <span>01 · UMI → TCP DATA</span>
           <strong>Position preprocessing</strong>
-          <small>depth spike · branch cleanup</small>
+          <small>depth spike · 가짜 경로 제거</small>
         </a>
         <a class="contents-card" href="#rotation">
           <img src="static/images/project/rotation/ep076_current_vs_improved_gt.png" alt="Rotation trajectory before and after branch-flip cleanup" loading="lazy">
@@ -106,7 +106,7 @@
     <section class="section section-tint" id="position">
       <div class="section-heading">
         <p class="section-index">01 · POSITION OUTLIERS</p>
-        <h2>위치 궤적에서<br><em>가짜 3D branch를 찾아 제거함</em></h2>
+        <h2>위치 궤적에서<br><em>실제 움직임에 없는 가짜 경로를 제거함</em></h2>
         <p>평면 marker pose ambiguity와 짧게 군집된 depth spike를 대표 episode에서 추적했습니다.</p>
       </div>
 
@@ -126,7 +126,7 @@
         </figure>
         <figure class="media-card reveal" data-lightbox>
           <img src="static/images/project/position/spike_problem_3d_ep109.png" alt="Three-dimensional episode 109 trajectory with spurious branch marked by red crosses" loading="lazy">
-          <figcaption><b>공간 해석</b> · 정상 궤적 아래로 생긴 빨간 branch는 실제 손동작이 아닌 깊이 추정 이상치입니다.</figcaption>
+          <figcaption><b>공간 해석</b> · 정상 궤적 아래로 생긴 빨간 가짜 경로는 실제 손동작이 아닌 깊이 추정 이상치입니다.</figcaption>
         </figure>
       </div>
 
@@ -134,7 +134,7 @@
         <img src="static/images/project/position/despike_before_after_ep109.png" alt="Episode 109 trajectory before and after despiking" loading="lazy">
         <figcaption>
           <span class="caption-label">Matched before / after · representative ep109</span>
-          <strong>긴 window로 후보를 찾고, 45 mm threshold와 3-pass interpolation으로 가짜 branch를 제거했습니다.</strong>
+          <strong>긴 window로 후보를 찾고, 45 mm threshold와 3-pass interpolation으로 가짜 경로를 제거했습니다.</strong>
           <small>초기 141-episode 감사: spike 83→0, 영향 episode 17→0, 문서상 max jump 263→29 mm.</small>
         </figcaption>
       </figure>
