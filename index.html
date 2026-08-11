@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11100d">
+  <meta name="description" content="AX Challenge visual project page: UMI-to-TCP position and rotation preprocessing, bilateral DIGIT sensing, and real-robot video comparison.">
+  <meta name="keywords" content="robot manipulation, tactile sensing, UMI, PiPER, trajectory retargeting, pose preprocessing, DIGIT">
+  <meta name="author" content="Project authors to be finalized">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AX Challenge · From UMI to Touch-Aware PiPER">
+  <meta property="og:description" content="A visual-first record of UMI-to-TCP preprocessing, bilateral tactile sensing, and real-robot comparison.">
+  <meta property="og:url" content="https://nicesony.github.io/ax-challenge-project-page/">
+  <meta property="og:image" content="https://nicesony.github.io/ax-challenge-project-page/static/images/project/position/despike_before_after_ep109.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AX Challenge · From UMI to Touch-Aware PiPER">
+  <meta name="twitter:description" content="UMI-to-TCP preprocessing, bilateral tactile sensing, and real-robot comparison.">
+  <meta name="twitter:image" content="https://nicesony.github.io/ax-challenge-project-page/static/images/project/position/despike_before_after_ep109.png">
+  <title>AX Challenge · From UMI to Touch-Aware PiPER</title>
+  <link rel="canonical" href="https://nicesony.github.io/ax-challenge-project-page/">
+  <link rel="icon" type="image/svg+xml" href="static/images/project/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/ax-challenge.css">
+  <script defer src="static/js/project.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">본문으로 건너뛰기</a>
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="wordmark" href="#top" aria-label="Go to top">
+      <span class="wordmark-dot"></span>
+      <span>Touch-Aware PiPER</span>
+    </a>
+    <div class="nav-links">
+      <a href="#position">Position</a>
+      <a href="#rotation">Rotation</a>
+      <a href="#touch">Sensors</a>
+      <a href="#comparison">Robot Videos</a>
+    </div>
+    <span class="nav-status">AX CHALLENGE EDITION</span>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-copy">
+      <p class="eyebrow"><span>AX Challenge</span> · UMI → TCP → Touch</p>
+      <h1>From Noisy Demonstrations<br>to <em>Touch-Aware</em> Manipulation</h1>
+      <p class="hero-deck">
+        UMI 영상에서 TCP 위치·회전 라벨의 이상치를 정제하고, 양쪽 DIGIT 센서로 접촉을
+        읽은 뒤 실제 로봇 영상 비교로 이어지는 과정을 시각적으로 정리했습니다.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#overview">목차부터 보기</a>
+        <a class="button secondary" href="#comparison">실제 영상 비교</a>
+      </div>
+      <p class="working-note">AX Challenge edition · 저자와 최종 제출 정보는 확정 후 교체합니다.</p>
+    </div>
+
+    <div class="hero-stats" aria-label="Key audited figures">
+      <div><strong>83 → 0</strong><span>초기 141-episode position spikes</span></div>
+      <div><strong>179.96° → 7.67°</strong><span>대표 ep76 rotation spike</span></div>
+      <div><strong>2 × DIGIT</strong><span>left / right tactile input</span></div>
+      <div><strong>34 episodes</strong><span>bilateral tactile dataset</span></div>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="section overview" id="overview">
+      <div class="section-heading compact">
+        <p class="section-index">00 · VISUAL CONTENTS</p>
+        <h2>UMI 시연에서<br><em>실제 로봇 비교</em>까지</h2>
+        <p>그림을 눌러 UMI→TCP 데이터 전처리, 좌·우 센서, 실제 영상 비교로 이동합니다.</p>
+      </div>
+
+      <nav class="contents-grid" aria-label="AX Challenge visual contents">
+        <a class="contents-card" href="#position">
+          <img src="static/images/project/position/despike_before_after_ep109.png" alt="Position trajectory before and after depth-spike cleanup" loading="lazy">
+          <span>01 · UMI → TCP DATA</span>
+          <strong>Position preprocessing</strong>
+          <small>depth spike · branch cleanup</small>
+        </a>
+        <a class="contents-card" href="#rotation">
+          <img src="static/images/project/rotation/ep076_current_vs_improved_gt.png" alt="Rotation trajectory before and after branch-flip cleanup" loading="lazy">
+          <span>02 · UMI → TCP DATA</span>
+          <strong>Rotation preprocessing</strong>
+          <small>SO(3) branch · quaternion smoothing</small>
+        </a>
+        <a class="contents-card" href="#touch">
+          <img src="static/images/project/tactile/source18_force_summary.png" alt="Left and right DIGIT tactile images and predicted relative deformation" loading="lazy">
+          <span>03 · BILATERAL SENSOR</span>
+          <strong>Left / Right DIGIT</strong>
+          <small>relative deformation · offline model</small>
+        </a>
+        <a class="contents-card" href="#comparison">
+          <img src="static/images/project/comparison/vision_only_poster.jpg" alt="External view of the PiPER vision-only baseline rollout" loading="lazy">
+          <span>04 · REAL ROBOT VIDEO</span>
+          <strong>Physical comparison</strong>
+          <small>vision-only available · tactile pair pending</small>
+        </a>
+      </nav>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="position">
+      <div class="section-heading">
+        <p class="section-index">01 · POSITION OUTLIERS</p>
+        <h2>매끄러운 시연 속에<br><em>가짜 3D branch</em>가 숨어 있었습니다.</h2>
+        <p>평면 marker pose ambiguity와 짧게 군집된 depth spike를 대표 episode에서 추적했습니다.</p>
+      </div>
+
+      <figure class="feature-figure reveal" data-lightbox>
+        <img src="static/images/project/position/tcp_raw_vs_stabilized_ep002.png" alt="Episode 2 raw single-marker trajectory compared with stabilized multi-marker trajectory" loading="lazy">
+        <figcaption>
+          <span class="caption-label">Before → after · representative ep002</span>
+          <strong>단일-marker raw의 흔들림을 multi-marker, branch disambiguation, filtering, despike로 안정화.</strong>
+          <small>이 그림의 대표 사례 수치: jump p95 약 42→13 mm, &gt;50 mm jump 10→0. 전체 paper-cup 집계와는 별도입니다.</small>
+        </figcaption>
+      </figure>
+
+      <div class="visual-grid two-up">
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/position/spike_problem_ep109.png" alt="Episode 109 position jump timeline showing eight red outlier frames and a sudden depth collapse" loading="lazy">
+          <figcaption><b>증상</b> · 130–260 mm 급등이 여러 frame에 붙어 발생해 짧은 median filter를 통과했습니다.</figcaption>
+        </figure>
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/position/spike_problem_3d_ep109.png" alt="Three-dimensional episode 109 trajectory with spurious branch marked by red crosses" loading="lazy">
+          <figcaption><b>공간 해석</b> · 정상 궤적 아래로 생긴 빨간 branch는 실제 손동작이 아닌 깊이 추정 이상치입니다.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="feature-figure reveal" data-lightbox>
+        <img src="static/images/project/position/despike_before_after_ep109.png" alt="Episode 109 trajectory before and after despiking" loading="lazy">
+        <figcaption>
+          <span class="caption-label">Matched before / after · representative ep109</span>
+          <strong>긴 window로 후보를 찾고, 45 mm threshold와 3-pass interpolation으로 가짜 branch를 제거했습니다.</strong>
+          <small>초기 141-episode 감사: spike 83→0, 영향 episode 17→0, 문서상 max jump 263→29 mm.</small>
+        </figcaption>
+      </figure>
+
+      <div class="visual-grid proof-grid">
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/position/despike_start_unchanged_ep002.png" alt="Before and after trajectory plotted on identical axes showing the same start point" loading="lazy">
+          <figcaption><b>보존 확인</b> · 동일 축에서 시작점은 그대로이고 spike 구간만 바뀝니다.</figcaption>
+        </figure>
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/position/paper_cup_v2_ep000_3d.png" alt="Smooth final paper-cup TCP trajectory shown from three angles" loading="lazy">
+          <figcaption><b>최종 QA 예시</b> · 30 Hz trajectory, grasp/release, 경로 형태를 세 시점에서 확인합니다.</figcaption>
+        </figure>
+        <figure class="media-card reveal portrait-media" data-lightbox>
+          <img src="static/images/project/position/paper_cup_v2_ep000_overlay.jpg" alt="External camera image with UMI gripper TCP axes overlaid" loading="lazy">
+          <figcaption><b>영상 위 검수</b> · 숫자만 보지 않고 local RGB axes가 실제 gripper와 함께 움직이는지 확인합니다.</figcaption>
+        </figure>
+      </div>
+
+    </section>
+
+    <section class="section" id="rotation">
+      <div class="section-heading">
+        <p class="section-index">02 · ROTATION OUTLIERS</p>
+        <h2>위치는 연속인데,<br><em>방향만 179.96°</em> 뒤집혔습니다.</h2>
+        <p>Euler 성분의 모양이 아니라 representation-independent SO(3) geodesic으로 branch flip을 찾았습니다.</p>
+      </div>
+
+      <div class="visual-grid rotation-intro">
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/rotation/aruco_to_tcp_transform.png" alt="Diagram of marker-to-rig-to-TCP rotation transform with a 231 millimeter lever arm" loading="lazy">
+          <figcaption><b>왜 작은 회전 오류가 커지는가</b> · 231.04 mm lever arm 때문에 marker 방향 오차가 TCP 위치와 local axes 모두에 전달됩니다.</figcaption>
+        </figure>
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/rotation/ep076_trajectory_rotation.png" alt="Episode 76 camera frames, continuous position traces, and a 179 degree SO(3) rotation jump" loading="lazy">
+          <figcaption><b>대표 ep76</b> · wrist RGB와 XYZ는 이어지지만 frame 59→60에서 회전만 179.96° 바뀝니다.</figcaption>
+        </figure>
+      </div>
+
+      <figure class="feature-figure reveal" data-lightbox>
+        <img src="static/images/project/rotation/ep076_current_vs_improved_gt.png" alt="Episode 76 old and improved ground-truth trajectories with rotation spike reduced from 179.96 to 7.67 degrees" loading="lazy">
+        <figcaption>
+          <span class="caption-label">Strongest matched comparison · representative ep76</span>
+          <strong>179.96° spike를 7.67° 이하로 낮추고, gripper phase와 함께 다시 검수했습니다.</strong>
+          <small>전체 138 episodes: p95 24.592°→2.704°, max 179.963°→22.358°, ≥45° transitions 189→0.</small>
+        </figcaption>
+      </figure>
+
+      <div class="algorithm-rail reveal" aria-label="Rotation cleanup algorithm">
+        <div><span>A</span><b>Keep both IPPE poses</b><small>후보와 reprojection error 보존</small></div>
+        <i>+</i>
+        <div><span>B</span><b>Episode-global DP</b><small>position + SO(3) + reprojection</small></div>
+        <i>+</i>
+        <div><span>C</span><b>Multi-marker anchor</b><small>rig-consistent 후보 선택</small></div>
+        <i>+</i>
+        <div><span>D</span><b>Quaternion smoothing</b><small>gap은 shortest-path SLERP</small></div>
+      </div>
+
+      <div class="subsection-heading">
+        <p class="section-index">RESIDUAL CASE · EP108</p>
+        <h3>남은 branch 문제도 영상의 물리축으로 다시 확인했습니다.</h3>
+      </div>
+
+      <div class="video-pair diagnostic-videos">
+        <figure class="video-card reveal">
+          <div class="video-label bad">BEFORE · v1</div>
+          <video controls autoplay muted loop playsinline preload="metadata">
+            <source src="static/videos/project/rotation/ep108_before.mp4" type="video/mp4">
+          </video>
+          <figcaption>초기→frame 10 방향 차이 45.13° · max step 9.50°</figcaption>
+        </figure>
+        <figure class="video-card reveal">
+          <div class="video-label good">AFTER · v2</div>
+          <video controls autoplay muted loop playsinline preload="metadata">
+            <source src="static/videos/project/rotation/ep108_after.mp4" type="video/mp4">
+          </video>
+          <figcaption>anchor 강화 후 4.13° · max step 2.43°</figcaption>
+        </figure>
+      </div>
+
+      <div class="final-qa-grid">
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/rotation/piper_v3_rotation_overview.png" alt="Final PiPER v3 rotation-step distributions with no severe jumps" loading="lazy">
+          <figcaption><b>Final PiPER v3 QA</b> · 34 episodes / 9,597 frames, raw 30 Hz p95 0.621°, max 1.470°, ≥45° 0.</figcaption>
+        </figure>
+        <div class="qa-numbers reveal">
+          <p class="mini-kicker">Retarget v3</p>
+          <strong>34 / 34</strong><span>offline strict IK accepted</span>
+          <hr>
+          <strong>1.862°</strong><span>training stride=3 SO(3) p95</span>
+          <hr>
+          <strong>4.357°</strong><span>training stride=3 max</span>
+          <small>Offline continuity/IK 결과입니다. 실제 robot success rate 또는 물리축 절대방향 검증이 아닙니다.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="touch">
+      <div class="section-heading">
+        <p class="section-index">03 · BILATERAL DIGIT SENSOR</p>
+        <h2>닫힘 명령 이후의 변형을<br><em>좌·우 두 개의 힘 신호</em>로 바꿉니다.</h2>
+        <p>출력은 물리 힘 N이 아니라 각 DIGIT 기준의 relative deformation pseudo-percent입니다.</p>
+      </div>
+
+      <div class="sensor-ribbon reveal">
+        <figure data-lightbox>
+          <img src="static/images/project/tactile/training_start_montage.png" alt="Wrist images from several training episode starts" loading="lazy">
+          <figcaption>Start · no contact</figcaption>
+        </figure>
+        <figure data-lightbox>
+          <img src="static/images/project/tactile/training_close_montage.png" alt="Wrist images near close command across training episodes" loading="lazy">
+          <figcaption>Close · object between DIGIT sensors</figcaption>
+        </figure>
+      </div>
+
+      <div class="model-diagram reveal" aria-label="Vision and bilateral tactile model diagram">
+        <div class="model-input wrist-input">
+          <span>WRIST</span><b>RGB + lowdim</b><small>Base VA · 10 Hz</small>
+        </div>
+        <div class="model-input tactile-input">
+          <span>LEFT DIGIT</span><b>224 × 224 RGB</b><small>relative deformation</small>
+        </div>
+        <div class="model-input tactile-input">
+          <span>RIGHT DIGIT</span><b>224 × 224 RGB</b><small>relative deformation</small>
+        </div>
+        <div class="model-connector"><span></span><span></span><span></span></div>
+        <div class="model-core">
+          <p>FROZEN BASE + TA REGRESSOR</p>
+          <strong>Vision action policy</strong>
+          <b>+</b>
+          <strong>bilateral force image model</strong>
+          <small>Simple fusion research baseline · BiCA candidate also evaluated</small>
+        </div>
+        <div class="model-output">
+          <div><span>10 Hz</span><b>EE pose + open / close</b></div>
+          <div><span>30 Hz target</span><b>left / right pseudo-force</b></div>
+          <div class="pending"><span>OFFLINE ONLY</span><b>force-aware close / hold / resume</b></div>
+        </div>
+      </div>
+
+      <div class="video-pair force-videos">
+        <figure class="video-card reveal">
+          <div class="video-label neutral">SOURCE EP18 · OFFLINE</div>
+          <video controls autoplay muted loop playsinline preload="metadata" poster="static/images/project/tactile/source18_force_summary.png">
+            <source src="static/videos/project/force/source18_force_overlay.mp4" type="video/mp4">
+          </video>
+          <figcaption>좌·우 tactile image와 target / prediction을 frame별로 함께 표시합니다.</figcaption>
+        </figure>
+        <figure class="video-card reveal">
+          <div class="video-label neutral">SOURCE EP38 · OFFLINE</div>
+          <video controls autoplay muted loop playsinline preload="metadata" poster="static/images/project/tactile/source38_force_summary.png">
+            <source src="static/videos/project/force/source38_force_overlay.mp4" type="video/mp4">
+          </video>
+          <figcaption>다른 episode에서 sensor identity와 상대 변형 범위를 다시 확인합니다.</figcaption>
+        </figure>
+      </div>
+
+      <div class="metric-cards reveal">
+        <div><span>DATA</span><strong>34 ep</strong><small>9,597 frames · 3,336 paired active rows</small></div>
+        <div><span>SIMPLE · VAL</span><strong>3.905 ± 0.468</strong><small>3-seed MAE · pseudo-%p</small></div>
+        <div><span>SIMPLE · TEST</span><strong>3.402 ± 0.320</strong><small>3-seed MAE · pseudo-%p</small></div>
+        <div><span>L/R SWAP</span><strong>+21.311</strong><small>test MAE degradation · pseudo-%p</small></div>
+      </div>
+
+      <figure class="feature-figure reveal" data-lightbox>
+        <img src="static/images/project/tactile/force_prediction_timelines.png" alt="Force target and prediction timelines for every one of the 34 episodes" loading="lazy">
+        <figcaption>
+          <span class="caption-label">All 34 episodes</span>
+          <strong>close/open 경계, 좌·우 target, prediction을 episode 전체에서 한 번에 확인합니다.</strong>
+          <small>split은 episode 단위입니다. frame을 무작위로 섞은 평가가 아닙니다.</small>
+        </figcaption>
+      </figure>
+
+      <div class="visual-grid tactile-analysis">
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/tactile/force_episode_ranges.png" alt="Per-episode bilateral force percentile ranges across train validation and test episodes" loading="lazy">
+          <figcaption><b>분포 QA</b> · episode마다 좌·우 active-force level이 다르며 train/val/test 배경을 함께 표시했습니다.</figcaption>
+        </figure>
+        <figure class="media-card reveal" data-lightbox>
+          <img src="static/images/project/tactile/forced_zero_conflict.png" alt="Box plot showing false positives on visually conflicting pre-close frames forced to zero" loading="lazy">
+          <figcaption><b>의도한 0-label의 한계</b> · pre-close에 이미 변형이 보이면 current-image-only 모델과 상충합니다. post-open은 즉시 0으로 학습하지 않았습니다.</figcaption>
+        </figure>
+      </div>
+
+      <div class="status-banner warning reveal">
+        <div><span>MODEL STATUS</span><strong>OFFLINE_REPLAY_ONLY</strong></div>
+        <p>BiCA는 구현됐지만 simple fusion보다 우수하다는 근거가 없고, wrist shuffle 영향도 작았습니다. 현재 표현은 <b>tactile-dominant bilateral relative-deformation regressor</b>가 정확합니다.</p>
+        <div><span>HARDWARE</span><strong>ready_for_hardware = false</strong></div>
+      </div>
+    </section>
+
+    <section class="section comparison-section" id="comparison">
+      <div class="section-heading inverse">
+        <p class="section-index">04 · REAL ROBOT VIDEO · A/B IN PROGRESS</p>
+        <h2>우리 모델과 촉각 없는 모델을<br><em>같은 화면에서</em> 비교할 자리입니다.</h2>
+        <p>vision-only 단일 rollout 1개를 먼저 추가했습니다. 촉각 조건의 matched 영상은 아직 없으므로, 아래 장면만으로 성능 우열이나 success rate를 주장하지 않습니다.</p>
+      </div>
+
+      <div class="comparison-grid">
+        <article class="comparison-card ours reveal" data-comparison-src="static/videos/project/comparison/ours_tactile.mp4">
+          <div class="comparison-head">
+            <span>OURS</span>
+            <h3>Vision + Bilateral Tactile</h3>
+          </div>
+          <div class="comparison-stage">
+            <video controls muted loop playsinline preload="metadata" aria-label="Future tactile model hardware evaluation video"></video>
+            <div class="video-placeholder">
+              <span class="record-dot"></span>
+              <b>VIDEO SLOT READY</b>
+              <p>matched hardware evaluation pending</p>
+              <code>ours_tactile.mp4</code>
+            </div>
+          </div>
+          <footer><span>Wrist</span><span>Left DIGIT</span><span>Right DIGIT</span><span>Force regulator</span></footer>
+        </article>
+
+        <article class="comparison-card baseline reveal" data-comparison-src="static/videos/project/comparison/vision_only.mp4">
+          <div class="comparison-head">
+            <span>BASELINE · SINGLE ROLLOUT</span>
+            <h3>Vision-only UMI</h3>
+          </div>
+          <div class="comparison-stage">
+            <video controls autoplay muted loop playsinline preload="metadata" poster="static/images/project/comparison/vision_only_poster.jpg" aria-label="Vision-only baseline single hardware rollout"></video>
+            <div class="video-placeholder">
+              <span class="record-dot"></span>
+              <b>VIDEO SLOT READY</b>
+              <p>matched hardware evaluation pending</p>
+              <code>vision_only.mp4</code>
+            </div>
+          </div>
+          <footer><span>18.8 s</span><span>External view</span><span>Paper cup</span><span>No tactile · provided label</span><span>Unpaired</span></footer>
+        </article>
+      </div>
+
+      <div class="protocol-grid reveal">
+        <div><span>01</span><b>Matched scene</b><small>같은 cup, pose, camera, light</small></div>
+        <div><span>02</span><b>Matched controller</b><small>같은 VA checkpoint, rate, limits</small></div>
+        <div><span>03</span><b>5–10 trials / condition</b><small>trial ID와 stop reason 기록</small></div>
+        <div><span>04</span><b>Predeclared success</b><small>contact · no crush · lift · release</small></div>
+        <div><span>05</span><b>Synchronized views</b><small>external + wrist + L/R DIGIT</small></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>AX Challenge · From UMI to Touch-Aware PiPER</strong>
+      <p>Position · rotation · bilateral sensor · real-robot video</p>
+    </div>
+    <div class="footer-links">
+      <a href="#top">Back to top ↑</a>
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a>
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+    </div>
+    <p class="attribution">Template adapted from the Academic Project Page Template and Nerfies project page. Research artifact claims are marked by evidence status.</p>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Expanded figure">
+    <button type="button" aria-label="Close expanded figure">×</button>
+    <img alt="">
+    <p></p>
+  </dialog>
+</body>
+</html>

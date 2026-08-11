@@ -1,0 +1,102 @@
+const { test, expect } = require('@playwright/test');
+
+const sections = ['overview', 'position', 'rotation', 'touch', 'comparison'];
+
+test('desktop page renders every research section and local asset', async ({ page }) => {
+  const badResponses = [];
+  page.on('response', (response) => {
+    const url = response.url();
+    const expectedEmptySlot = url.endsWith('/ours_tactile.mp4');
+    if (response.status() >= 400 && !expectedEmptySlot) badResponses.push(`${response.status()} ${url}`);
+  });
+
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('./', { waitUntil: 'domcontentloaded' });
+  await expect(page).toHaveTitle(/AX Challenge/);
+
+  for (const id of sections) {
+    await page.locator(`#${id}`).scrollIntoViewIfNeeded();
+    await page.waitForTimeout(250);
+    await expect(page.locator(`#${id}`)).toBeVisible();
+  }
+
+  await expect(page.locator('.hero-gallery')).toHaveCount(0);
+  await expect(page.locator('#retarget')).toHaveCount(0);
+  await expect(page.locator('#limits')).toHaveCount(0);
+  await expect(page.getByText('DEPLOYMENT MISMATCH', { exact: true })).toHaveCount(0);
+  await expect(page.locator('.contents-card')).toHaveCount(4);
+
+  const brokenImages = await page.locator('img[src]').evaluateAll((images) => images
+    .filter((image) => !image.complete || image.naturalWidth === 0)
+    .map((image) => image.getAttribute('src')));
+  expect(brokenImages).toEqual([]);
+  expect(badResponses).toEqual([]);
+
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow).toBeLessThanOrEqual(1);
+
+  await page.locator('#comparison').screenshot({ path: 'test-results/comparison-section.png' });
+});
+
+test('mobile page has no horizontal overflow', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('./', { waitUntil: 'domcontentloaded' });
+  await page.locator('#comparison').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(300);
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow).toBeLessThanOrEqual(1);
+  await expect(page.locator('.comparison-card')).toHaveCount(2);
+});
+
+test('included research videos decode and advance', async ({ page }) => {
+  await page.goto('./', { waitUntil: 'domcontentloaded' });
+  const videos = page.locator('.diagnostic-videos video, .force-videos video');
+  await expect(videos).toHaveCount(4);
+
+  for (let index = 0; index < 4; index += 1) {
+    const video = videos.nth(index);
+    await video.scrollIntoViewIfNeeded();
+    await video.evaluate(async (element) => {
+      element.muted = true;
+      await element.play();
+    });
+    await expect.poll(() => video.evaluate((element) => ({
+      currentTime: element.currentTime,
+      error: element.error?.message || null,
+      readyState: element.readyState,
+    }))).toMatchObject({ error: null, readyState: 4 });
+    await expect.poll(() => video.evaluate((element) => element.currentTime), {
+      timeout: 10_000,
+    }).toBeGreaterThan(0.1);
+    await video.evaluate((element) => element.pause());
+  }
+});
+
+test('vision-only rollout replaces only the baseline placeholder', async ({ page }) => {
+  await page.goto('./', { waitUntil: 'domcontentloaded' });
+  const baseline = page.locator('.comparison-card.baseline');
+  const tactile = page.locator('.comparison-card.ours');
+  await baseline.scrollIntoViewIfNeeded();
+  await expect(baseline).toHaveClass(/has-video/);
+  await expect(tactile).not.toHaveClass(/has-video/);
+
+  const video = baseline.locator('video');
+  await video.evaluate(async (element) => {
+    element.muted = true;
+    await element.play();
+  });
+  await expect.poll(() => video.evaluate((element) => element.currentTime), {
+    timeout: 10_000,
+  }).toBeGreaterThan(0.1);
+  expect(await video.evaluate((element) => element.error?.message || null)).toBeNull();
+});
+
+test('AX edition full-page visual snapshots render', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('./', { waitUntil: 'networkidle' });
+  await page.screenshot({ path: 'test-results/ax-desktop-full.png', fullPage: true });
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('./', { waitUntil: 'networkidle' });
+  await page.screenshot({ path: 'test-results/ax-mobile-full.png', fullPage: true });
+});

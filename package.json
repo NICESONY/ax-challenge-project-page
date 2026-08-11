@@ -1,0 +1,11 @@
+{
+  "name": "ax-challenge-project-page",
+  "private": true,
+  "scripts": {
+    "test": "playwright test --reporter=line",
+    "preview": "python -m http.server 8765 --bind 127.0.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1"
+  }
+}
