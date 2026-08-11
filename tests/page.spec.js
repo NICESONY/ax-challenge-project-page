@@ -34,6 +34,7 @@ test('desktop page renders every research section and local asset', async ({ pag
   await expect(page.locator('#limits')).toHaveCount(0);
   await expect(page.getByText('DEPLOYMENT MISMATCH', { exact: true })).toHaveCount(0);
   await expect(page.locator('.contents-card')).toHaveCount(4);
+  await expect(page.locator('#overview h2')).toContainText('UMI Handheld 데이터 수집부터');
   await expect(page.locator('#position h2')).toContainText('가짜 3D branch를 찾아 제거함');
   await expect(page.locator('#rotation h2')).toContainText('방향만 179.96° 뒤집히는 문제');
   await expect(page.getByText(/vision-only 단일 rollout 1개를 먼저 추가했습니다/)).toHaveCount(0);
