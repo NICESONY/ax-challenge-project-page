@@ -25,6 +25,7 @@ test('desktop page renders every research section and local asset', async ({ pag
   await expect(page.locator('#limits')).toHaveCount(0);
   await expect(page.getByText('DEPLOYMENT MISMATCH', { exact: true })).toHaveCount(0);
   await expect(page.locator('.contents-card')).toHaveCount(4);
+  await expect(page.locator('#position h2')).toContainText('가짜 3D branch를 찾아 제거함');
 
   const brokenImages = await page.locator('img[src]').evaluateAll((images) => images
     .filter((image) => !image.complete || image.naturalWidth === 0)
