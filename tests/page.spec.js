@@ -21,6 +21,15 @@ test('desktop page renders every research section and local asset', async ({ pag
   }
 
   await expect(page.locator('.hero-gallery')).toHaveCount(0);
+  const heroLayout = await page.locator('.hero-copy').evaluate((element) => {
+    const bounds = element.getBoundingClientRect();
+    return {
+      centerOffset: Math.abs((bounds.left + bounds.right) / 2 - window.innerWidth / 2),
+      textAlign: getComputedStyle(element).textAlign,
+    };
+  });
+  expect(heroLayout.centerOffset).toBeLessThanOrEqual(1);
+  expect(heroLayout.textAlign).toBe('center');
   await expect(page.locator('#retarget')).toHaveCount(0);
   await expect(page.locator('#limits')).toHaveCount(0);
   await expect(page.getByText('DEPLOYMENT MISMATCH', { exact: true })).toHaveCount(0);

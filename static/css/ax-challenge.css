@@ -8,6 +8,17 @@
 
 .hero-copy {
   width: min(1040px, 100%);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.hero h1,
+.hero-deck {
+  margin-inline: auto;
+}
+
+.hero-actions {
+  justify-content: center;
 }
 
 .contents-grid {
