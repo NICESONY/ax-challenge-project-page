@@ -6,8 +6,7 @@ test('desktop page renders every research section and local asset', async ({ pag
   const badResponses = [];
   page.on('response', (response) => {
     const url = response.url();
-    const expectedEmptySlot = url.endsWith('/ours_tactile.mp4');
-    if (response.status() >= 400 && !expectedEmptySlot) badResponses.push(`${response.status()} ${url}`);
+    if (response.status() >= 400) badResponses.push(`${response.status()} ${url}`);
   });
 
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -87,23 +86,26 @@ test('included research videos decode and advance', async ({ page }) => {
   }
 });
 
-test('vision-only rollout replaces only the baseline placeholder', async ({ page }) => {
+test('both robot rollout videos replace their placeholders and play', async ({ page }) => {
   await page.goto('./', { waitUntil: 'domcontentloaded' });
   const baseline = page.locator('.comparison-card.baseline');
   const tactile = page.locator('.comparison-card.ours');
   await baseline.scrollIntoViewIfNeeded();
   await expect(baseline).toHaveClass(/has-video/);
-  await expect(tactile).not.toHaveClass(/has-video/);
+  await expect(tactile).toHaveClass(/has-video/);
 
-  const video = baseline.locator('video');
-  await video.evaluate(async (element) => {
-    element.muted = true;
-    await element.play();
-  });
-  await expect.poll(() => video.evaluate((element) => element.currentTime), {
-    timeout: 10_000,
-  }).toBeGreaterThan(0.1);
-  expect(await video.evaluate((element) => element.error?.message || null)).toBeNull();
+  for (const card of [tactile, baseline]) {
+    const video = card.locator('video');
+    await video.evaluate(async (element) => {
+      element.muted = true;
+      await element.play();
+    });
+    await expect.poll(() => video.evaluate((element) => element.currentTime), {
+      timeout: 10_000,
+    }).toBeGreaterThan(0.1);
+    expect(await video.evaluate((element) => element.error?.message || null)).toBeNull();
+    await video.evaluate((element) => element.pause());
+  }
 });
 
 test('AX edition full-page visual snapshots render', async ({ page }) => {

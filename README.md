@@ -40,11 +40,12 @@ video slot을 확인합니다.
 
 ## Video slots
 
-- `static/videos/project/comparison/vision_only.mp4`: 현재 포함된 단일 vision-only rollout
-- `static/videos/project/comparison/ours_tactile.mp4`: matched tactile rollout 촬영 후 같은
-  이름으로 추가하면 placeholder가 player로 바뀝니다.
+- `static/videos/project/comparison/vision_only.mp4`: vision-only rollout
+- `static/videos/project/comparison/ours_tactile.mp4`: 2026-08-12에 제공된 successful
+  vision + bilateral tactile rollout
 
-현재 두 영상은 matched pair가 아니므로 페이지도 `A/B IN PROGRESS`로 표시합니다.
+현재 두 영상은 모두 재생되지만 matched pair는 아니므로 페이지는 계속 `A/B IN
+PROGRESS`로 표시합니다.
 
 ## Publication boundary
 
