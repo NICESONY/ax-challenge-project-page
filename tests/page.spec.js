@@ -4,9 +4,12 @@ const sections = ['overview', 'position', 'rotation', 'touch', 'comparison'];
 
 test('desktop page renders every research section and local asset', async ({ page }) => {
   const badResponses = [];
+  const localOrigin = new URL(process.env.PROJECT_PAGE_BASE_URL || 'http://127.0.0.1:8765').origin;
   page.on('response', (response) => {
     const url = response.url();
-    if (response.status() >= 400) badResponses.push(`${response.status()} ${url}`);
+    if (new URL(url).origin === localOrigin && response.status() >= 400) {
+      badResponses.push(`${response.status()} ${url}`);
+    }
   });
 
   await page.setViewportSize({ width: 1440, height: 900 });
