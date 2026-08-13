@@ -39,6 +39,12 @@ test('desktop page renders every research section and local asset', async ({ pag
   await expect(page.locator('#rotation h3')).toContainText('보정 전·후 영상 비교');
   await expect(page.locator('#touch h2')).toContainText('좌·우 두 개의 힘 신호로 바꿈');
   await expect(page.getByText(/vision-only 단일 rollout 1개를 먼저 추가했습니다/)).toHaveCount(0);
+  await expect(page.locator('#comparison h2')).toHaveText('VTA vs VA');
+  await expect(page.locator('.comparison-card.ours h3')).toHaveText('Vision + Tactile');
+  await expect(page.getByText('Vision + Bilateral Tactile', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('의도한 0-label의 한계')).toHaveCount(0);
+  await expect(page.locator('img[src$="forced_zero_conflict.png"]')).toHaveCount(0);
+  await expect(page.getByText(/우리 모델과 촉각 없는 모델을/)).toHaveCount(0);
 
   const brokenImages = await page.locator('img[src]').evaluateAll((images) => images
     .filter((image) => !image.complete || image.naturalWidth === 0)

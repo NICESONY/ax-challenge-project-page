@@ -313,10 +313,6 @@
           <img src="static/images/project/tactile/force_episode_ranges.png" alt="Per-episode bilateral force percentile ranges across train validation and test episodes" loading="lazy">
           <figcaption><b>분포 QA</b> · episode마다 좌·우 active-force level이 다르며 train/val/test 배경을 함께 표시했습니다.</figcaption>
         </figure>
-        <figure class="media-card reveal" data-lightbox>
-          <img src="static/images/project/tactile/forced_zero_conflict.png" alt="Box plot showing false positives on visually conflicting pre-close frames forced to zero" loading="lazy">
-          <figcaption><b>의도한 0-label의 한계</b> · pre-close에 이미 변형이 보이면 current-image-only 모델과 상충합니다. post-open은 즉시 0으로 학습하지 않았습니다.</figcaption>
-        </figure>
       </div>
 
       <div class="status-banner warning reveal">
@@ -329,17 +325,17 @@
     <section class="section comparison-section" id="comparison">
       <div class="section-heading inverse">
         <p class="section-index">04 · REAL ROBOT VIDEO · A/B IN PROGRESS</p>
-        <h2>우리 모델과 촉각 없는 모델을<br><em>같은 화면에서</em> 비교할 자리입니다.</h2>
+        <h2><em>VTA vs VA</em></h2>
       </div>
 
       <div class="comparison-grid">
         <article class="comparison-card ours reveal" data-comparison-src="static/videos/project/comparison/ours_tactile.mp4">
           <div class="comparison-head">
             <span>OURS · SUCCESSFUL ROLLOUT</span>
-            <h3>Vision + Bilateral Tactile</h3>
+            <h3>Vision + Tactile</h3>
           </div>
           <div class="comparison-stage">
-            <video controls autoplay muted loop playsinline preload="metadata" poster="static/images/project/comparison/ours_tactile_poster.jpg" aria-label="Successful vision and bilateral tactile robot rollout"></video>
+            <video controls autoplay muted loop playsinline preload="metadata" poster="static/images/project/comparison/ours_tactile_poster.jpg" aria-label="Successful vision and tactile robot rollout"></video>
             <div class="video-placeholder">
               <span class="record-dot"></span>
               <b>VIDEO SLOT READY</b>
@@ -347,7 +343,7 @@
               <code>ours_tactile.mp4</code>
             </div>
           </div>
-          <footer><span>30.0 s</span><span>External view</span><span>Paper cup</span><span>Vision + bilateral tactile</span><span>Successful rollout</span></footer>
+          <footer><span>30.0 s</span><span>External view</span><span>Paper cup</span><span>Vision + Tactile</span><span>Successful rollout</span></footer>
         </article>
 
         <article class="comparison-card baseline reveal" data-comparison-src="static/videos/project/comparison/vision_only.mp4">
