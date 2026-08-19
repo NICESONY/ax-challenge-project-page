@@ -21,6 +21,10 @@
   justify-content: center;
 }
 
+.ax-video-only .comparison-stage video {
+  display: block;
+}
+
 .hero {
   grid-template-columns: minmax(0, 1fr);
   min-height: auto;

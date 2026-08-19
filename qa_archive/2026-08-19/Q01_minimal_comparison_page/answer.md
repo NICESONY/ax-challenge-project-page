@@ -53,6 +53,10 @@
 - 두 영상 모두 실제 decode 후 `currentTime > 0.1 s`
 - desktop/mobile horizontal overflow 없음
 
+공개 서버 최초 검증에서 기존 placeholder loader의 비동기 `video.load()`와 즉시
+`play()`가 한 번 경합했다. 비교 MP4가 이미 확정된 현재 상태에는 HEAD probe가
+불필요하므로 두 `<video>`에 `<source>`를 직접 연결하고 항상 표시하도록 수정했다.
+
 ## 불확실성
 
 - 기존 연구 내용은 HTML source를 보는 방문자에게는 주석으로 보일 수 있다. 화면에서만
