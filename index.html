@@ -26,7 +26,8 @@
   <link rel="stylesheet" href="static/css/ax-challenge.css">
   <script defer src="static/js/project.js"></script>
 </head>
-<body>
+<body class="ax-video-only">
+  <!-- AX_CHALLENGE_ARCHIVE: comparison videos 외의 기존 공개 UI를 보존한 주석 시작
   <a class="skip-link" href="#content">본문으로 건너뛰기</a>
 
   <nav class="site-nav" aria-label="Main navigation">
@@ -65,8 +66,10 @@
       <div><strong>34 episodes</strong><span>bilateral tactile dataset</span></div>
     </div>
   </header>
+  AX_CHALLENGE_ARCHIVE: 기존 공개 UI 주석 끝 -->
 
   <main id="content">
+    <!-- AX_CHALLENGE_ARCHIVE: position/rotation/tactile 설명을 보존한 주석 시작
     <section class="section overview" id="overview">
       <div class="section-heading compact">
         <p class="section-index">00 · VISUAL CONTENTS</p>
@@ -321,49 +324,65 @@
         <div><span>HARDWARE</span><strong>ready_for_hardware = false</strong></div>
       </div>
     </section>
+    AX_CHALLENGE_ARCHIVE: position/rotation/tactile 설명 주석 끝 -->
 
     <section class="section comparison-section" id="comparison">
       <div class="section-heading inverse">
+        <!-- AX_CHALLENGE_ARCHIVE: 이전 section index
         <p class="section-index">04 · REAL ROBOT VIDEO · A/B IN PROGRESS</p>
+        -->
         <h2><em>VTA vs VA</em></h2>
       </div>
 
       <div class="comparison-grid">
         <article class="comparison-card baseline reveal" data-comparison-src="static/videos/project/comparison/vision_only.mp4">
           <div class="comparison-head">
+            <!-- AX_CHALLENGE_ARCHIVE: 이전 상태 label
             <span>BASELINE · SINGLE ROLLOUT</span>
+            -->
             <h3>Vision-only UMI</h3>
           </div>
           <div class="comparison-stage">
             <video controls autoplay muted loop playsinline preload="metadata" poster="static/images/project/comparison/vision_only_poster.jpg" aria-label="Vision-only baseline single hardware rollout"></video>
+            <!-- AX_CHALLENGE_ARCHIVE: 영상 부재용 placeholder
             <div class="video-placeholder">
               <span class="record-dot"></span>
               <b>VIDEO SLOT READY</b>
               <p>matched hardware evaluation pending</p>
               <code>vision_only.mp4</code>
             </div>
+            -->
           </div>
+          <!-- AX_CHALLENGE_ARCHIVE: 이전 영상 metadata footer
           <footer><span>18.8 s</span><span>External view</span><span>Paper cup</span><span>No tactile · provided label</span><span>Unpaired</span></footer>
+          -->
         </article>
 
         <article class="comparison-card ours reveal" data-comparison-src="static/videos/project/comparison/ours_tactile.mp4">
           <div class="comparison-head">
+            <!-- AX_CHALLENGE_ARCHIVE: 이전 상태 label
             <span>OURS · SUCCESSFUL ROLLOUT</span>
+            -->
             <h3>Vision + Tactile</h3>
           </div>
           <div class="comparison-stage">
             <video controls autoplay muted loop playsinline preload="metadata" poster="static/images/project/comparison/ours_tactile_poster.jpg" aria-label="Successful vision and tactile robot rollout"></video>
+            <!-- AX_CHALLENGE_ARCHIVE: 영상 부재용 placeholder
             <div class="video-placeholder">
               <span class="record-dot"></span>
               <b>VIDEO SLOT READY</b>
               <p>matched hardware evaluation pending</p>
               <code>ours_tactile.mp4</code>
             </div>
+            -->
           </div>
+          <!-- AX_CHALLENGE_ARCHIVE: 이전 영상 metadata footer
           <footer><span>30.0 s</span><span>External view</span><span>Paper cup</span><span>Vision + Tactile</span><span>Successful rollout</span></footer>
+          -->
         </article>
       </div>
 
+      <!-- AX_CHALLENGE_ARCHIVE: 촬영 protocol 설명
       <div class="protocol-grid reveal">
         <div><span>01</span><b>Matched scene</b><small>같은 cup, pose, camera, light</small></div>
         <div><span>02</span><b>Matched controller</b><small>같은 VA checkpoint, rate, limits</small></div>
@@ -371,10 +390,12 @@
         <div><span>04</span><b>Predeclared success</b><small>contact · no crush · lift · release</small></div>
         <div><span>05</span><b>Synchronized views</b><small>external + wrist + L/R DIGIT</small></div>
       </div>
+      -->
     </section>
 
   </main>
 
+  <!-- AX_CHALLENGE_ARCHIVE: 이전 footer와 lightbox를 보존한 주석 시작
   <footer class="site-footer">
     <div>
       <strong>AX Challenge · From UMI to Touch-Aware PiPER</strong>
@@ -393,5 +414,6 @@
     <img alt="">
     <p></p>
   </dialog>
+  AX_CHALLENGE_ARCHIVE: 이전 footer와 lightbox 주석 끝 -->
 </body>
 </html>

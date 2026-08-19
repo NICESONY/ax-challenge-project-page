@@ -1,5 +1,26 @@
 /* AX Challenge edition: image-free hero and image-first visual contents. */
 
+/* Minimal public view: only the comparison title and the two rollout videos. */
+.ax-video-only #content {
+  min-height: 100vh;
+}
+
+.ax-video-only .comparison-section {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ax-video-only .section-heading {
+  margin-bottom: clamp(24px, 4vw, 48px);
+  text-align: center;
+}
+
+.ax-video-only .comparison-head {
+  justify-content: center;
+}
+
 .hero {
   grid-template-columns: minmax(0, 1fr);
   min-height: auto;
